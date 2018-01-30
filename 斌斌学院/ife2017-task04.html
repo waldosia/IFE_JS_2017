@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>IFE JavaScript Task 04</title>
+  <style>
+  li {
+	display: inline-block;
+	background: red;
+	text-align: center;
+	font-size: 20px;
+	padding: 5px;
+	margin:5px;	
+	height: 50px;
+	width: 50px;
+	list-style: none;
+	color: #fff;
+  }
+  </style>
+ </head>
+ <body>
+
+  <input id="team" type="text"/>
+  <button id="leftIn">左侧入</button>
+  <button id="rightIn">右侧入</button>
+  <button id="leftOut">左侧出</button>
+  <button id="rightOut">右侧出</button>
+
+ <ul id="numBlock">
+
+ </ul>
+  <script>
+	var num = document.getElementById("team");
+	var leftIn = document.getElementById("leftIn");
+	var rightIn = document.getElementById("rightIn");
+	var leftOut = document.getElementById("leftOut");
+	var rightOut = document.getElementById("rightOut");
+	var queue = document.getElementById("numBlock");
+
+	
+	//左侧入
+	leftIn.onclick = function(){
+	if (num.value == ""){
+		alert("请输入数字！！");
+	}
+	else if (isNaN(num.value))
+		{alert("请输入数字！！");
+			
+		}
+	else
+		{
+			var leftInNum = document.createElement("li");
+			leftInNum.innerHTML = num.value;
+			queue.insertBefore(leftInNum,queue.firstChild);
+			
+		}
+		num.value ="";
+		num.focus();
+	};
+
+//右侧入
+	rightIn.onclick = function(){
+		//isNaN()函数在""情况下为false
+	if (num.value == ""){
+		alert("请输入数字！！");
+	}
+	else if (isNaN(num.value))
+		{
+			alert("请输入数字！！");
+			
+			}
+	else
+		{
+			var rightInNum = document.createElement("li");
+			rightInNum.innerHTML = num.value;
+			queue.appendChild(rightInNum);
+		}
+		num.value ="";
+		num.focus();
+	};
+
+//左侧出
+	leftOut.onclick = function(){
+		alert('删除数字:' + queue.firstChild.innerHTML);
+		queue.removeChild(queue.firstChild);
+	};
+//右侧出
+	rightOut.onclick = function(){
+		alert('删除数字:' + queue.firstChild.innerHTML);
+		queue.removeChild(queue.lastChild);
+	};
+
+	queue.onclick = function(e){
+		alert('删除数字:' + e.target.innerHTML);
+		queue.removeChild(e.target);
+	}
+</script>
+ </body>
+</html>
